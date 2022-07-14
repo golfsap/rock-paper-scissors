@@ -52,7 +52,8 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 }
+
+const playerSelection = "scissors";
 const computerSelection = computerPlay();
 console.log(computerSelection);
-
-console.log(playRound("paper", computerSelection));
+console.log(playRound(playerSelection, computerSelection));
