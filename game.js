@@ -2,7 +2,7 @@ console.log("Hello there, this is rock paper scissors!");
 
 function computerPlay() {
     // define array of choices
-    const choices = ["Rock", "Paper", "Scissors"];
+    const choices = ["rock", "paper", "scissors"];
 
     // get random index value
     const randomIndex = Math.floor(Math.random() * choices.length);
@@ -14,8 +14,8 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    // convert playerSelection to all lowercase with first letter capital
-    const playerChoice = playerSelection.charAt(0).toUpperCase() + playerSelection.toLowerCase().slice(1);
+    // // convert playerSelection to all lowercase with first letter capital
+    // const playerChoice = playerSelection.charAt(0).toUpperCase() + playerSelection.toLowerCase().slice(1);
 
     // check if the same
     if (playerChoice === computerSelection) {
@@ -24,8 +24,8 @@ function playRound(playerSelection, computerSelection) {
     }
 
     // if player chooses rock
-    if (playerChoice === "Rock") {
-        if (computerSelection === "Scissors") {
+    if (playerChoice === "rock") {
+        if (computerSelection === "scissors") {
             console.log("You Win! Rock beats Scissors");
             return "Win";
         }
@@ -36,8 +36,8 @@ function playRound(playerSelection, computerSelection) {
     }
 
     // if player chooses scissors
-    if (playerChoice === "Scissors") {
-        if (computerSelection === "Paper") {
+    if (playerChoice === "scissors") {
+        if (computerSelection === "paper") {
             console.log("You Win! Scissors beats Paper");
             return "Win";
         }
@@ -48,8 +48,8 @@ function playRound(playerSelection, computerSelection) {
     }
     
     // if player chooses paper
-    if (playerChoice === "Paper") {
-        if (computerSelection === "Rock") {
+    if (playerChoice === "paper") {
+        if (computerSelection === "rock") {
             console.log("You Win! Paper beats Rock");
             return "Win";
         }
@@ -61,7 +61,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function updateScore(winOrLose) {
-    // player score +1 if win, computer score +1 if lose, +1 both if draw
+    // player score +1 if win, computer score +1 if lose, nothing if draw
     if (winOrLose === "Win") {
         playerScore++;
     }
@@ -69,8 +69,7 @@ function updateScore(winOrLose) {
         computerScore++;
     }
     else {
-        playerScore++;
-        computerScore++;
+        return;
     }
 }
 
@@ -107,7 +106,7 @@ function game() {
 }
 
 function logText(e) {
-    console.log(this);
+    console.log(this.classList.value);
 }
 
 const buttons = Array.from(document.querySelectorAll('button'));
