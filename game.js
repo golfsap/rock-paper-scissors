@@ -17,59 +17,68 @@ function playRound(e) {
     const playerChoice = this.classList.value;
     const computerSelection = computerPlay();
 
-    console.log(`You chose ${playerChoice}`);
-    console.log(`Computer chose ${computerSelection}`);
+    console.log(`You chose ${playerChoice}, Computer chose ${computerSelection}`);
 
     // check if the same
     if (playerChoice === computerSelection) {
         console.log("It's a draw!");
-        return "Draw";
+        return;
     }
 
-    // if player chooses rock
-    if (playerChoice === "rock") {
-        if (computerSelection === "scissors") {
-            console.log("You Win! Rock beats Scissors");
-            return "Win";
-        }
-        else {
-            console.log("You Lose! Paper beats Rock");
-            return "Lose";
-        }
+    if (((playerChoice ===  'rock') && (computerSelection === 'scissors')) || ((playerChoice ===  'paper') && (computerSelection === 'rock')) || ((playerChoice ===  'scissors') && (computerSelection === 'paper'))) {
+        console.log("You Win!");
+        updateScore('Win');
     }
 
-    // if player chooses scissors
-    if (playerChoice === "scissors") {
-        if (computerSelection === "paper") {
-            console.log("You Win! Scissors beats Paper");
-            return "Win";
-        }
-        else {
-            console.log("You Lose! Rock beats Scissors");
-            return "Lose";
-        }
+    else if (((playerChoice ===  'rock') && (computerSelection === 'paper')) || ((playerChoice ===  'paper') && (computerSelection === 'scissors')) || ((playerChoice ===  'scissors') && (computerSelection === 'rock'))) {
+        console.log('You Lose');
+        updateScore('Lose');
     }
+    // // if player chooses rock
+    // if (playerChoice === "rock") {
+    //     if (computerSelection === "scissors") {
+    //         console.log("You Win! Rock beats Scissors");
+    //         updateScore('Win');
+    //     }
+    //     else {
+    //         console.log("You Lose! Paper beats Rock");
+    //         return "Lose";
+    //     }
+    // }
+
+    // // if player chooses scissors
+    // if (playerChoice === "scissors") {
+    //     if (computerSelection === "paper") {
+    //         console.log("You Win! Scissors beats Paper");
+    //         return "Win";
+    //     }
+    //     else {
+    //         console.log("You Lose! Rock beats Scissors");
+    //         return "Lose";
+    //     }
+    // }
     
-    // if player chooses paper
-    if (playerChoice === "paper") {
-        if (computerSelection === "rock") {
-            console.log("You Win! Paper beats Rock");
-            return "Win";
-        }
-        else {
-            console.log("You Lose! Scissors beats Paper");
-            return "Lose";
-        }
-    }
+    // // if player chooses paper
+    // if (playerChoice === "paper") {
+    //     if (computerSelection === "rock") {
+    //         console.log("You Win! Paper beats Rock");
+    //         return "Win";
+    //     }
+    //     else {
+    //         console.log("You Lose! Scissors beats Paper");
+    //         return "Lose";
+    //     }
+    // }
 }
 
 function updateScore(winOrLose) {
-    // player score +1 if win, computer score +1 if lose, nothing if draw
     if (winOrLose === "Win") {
         playerScore++;
+        pScore.textContent = playerScore;
     }
     else if (winOrLose === "Lose") {
         computerScore++;
+        cScore.textContent = computerScore;
     }
     else {
         return;
