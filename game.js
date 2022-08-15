@@ -46,6 +46,7 @@ function updateScorePlayer() {
         winnerMsg.classList.add('winner');
         winnerMsg.textContent = 'Congratulations! You won!';
         results.append(winnerMsg);
+        stopGame();
     }
 }
 
@@ -57,6 +58,7 @@ function updateScoreCom() {
         winnerMsg.classList.add('winner');
         winnerMsg.textContent = 'Sorry! You lost!';
         results.append(winnerMsg);
+        stopGame();
     }
 }
 
@@ -64,14 +66,28 @@ function logChoice(playerChoice, computerSelection) {
     choices.textContent = `You chose ${playerChoice}, Computer chose ${computerSelection}`;
 }
 
+function stopGame() {
+    // create reset game button
+    const resetBtn = document.createElement('button');
+    resetBtn.classList.add('reset');
+    resetBtn.textContent = 'Reset Game';
+    results.appendChild(resetBtn);
+
+    // remove event listeners for choices
+    const buttons = Array.from(document.querySelectorAll('.choices button'));
+    buttons.forEach(button => button.removeEventListener('click', playRound));
+}
+
+function resetGame() {
+    
+}
+
 function game() {
 
     const buttons = Array.from(document.querySelectorAll('button'));
     buttons.forEach(button => button.addEventListener('click', playRound));
 
-    if ((playerScore === 5) || (computerScore === 5)) {
-        console.log('someone won!');
-    }
+    
 
 }
 
@@ -93,6 +109,7 @@ cScore.textContent = computerScore;
 computerContainer.appendChild(cScore);
 
 const choices = document.querySelector('#choices');
+
 
 // start a game
 game();
