@@ -72,22 +72,35 @@ function stopGame() {
     resetBtn.classList.add('reset');
     resetBtn.textContent = 'Reset Game';
     results.appendChild(resetBtn);
+    resetBtn.addEventListener('click', resetGame);
 
     // remove event listeners for choices
     const buttons = Array.from(document.querySelectorAll('.choices button'));
     buttons.forEach(button => button.removeEventListener('click', playRound));
+
 }
 
 function resetGame() {
-    
+    playerScore = 0;
+    computerScore = 0;
+    pScore.textContent = playerScore;
+    cScore.textContent = computerScore;
+
+    const winner = document.querySelector('.winner');
+    winner.remove();
+    const choices = document.querySelector('#choices');
+    choices.textContent = '';
+    const resetBtn = document.querySelector('.reset');
+    resetBtn.remove();
+
+    game();
+
 }
 
 function game() {
 
-    const buttons = Array.from(document.querySelectorAll('button'));
+    const buttons = Array.from(document.querySelectorAll('.choices button'));
     buttons.forEach(button => button.addEventListener('click', playRound));
-
-    
 
 }
 
