@@ -1,3 +1,4 @@
+/*
 console.log("Hello there, this is rock paper scissors!");
 
 function computerPlay() {
@@ -105,10 +106,69 @@ function game() {
         console.log("It's a tie! :O");
     }
 }
+*/
+
+function getComputerChoice() {
+    // set array of choices
+    const options = ['Rock', 'Paper', 'Scissors'];
+    // get random index for computer choice
+    const computerChoice = options[Math.floor(Math.random()*options.length)];
+    return computerChoice;
+}
+
+function playRound(playerSelection, computerSelection) {
+    // change to lowercase
+    const myChoice = playerSelection.toLowerCase();
+    const enemyChoice = computerSelection.toLowerCase();
+
+    // define object if move is strong or weak against another
+    const weapons = {
+        rock: {weakTo: 'paper', strongTo: 'scissors'},
+        paper: {weakTo: 'scissors', strongTo: 'rock'},
+        scissors: {weakTo: 'rock', strongTo: 'paper'}
+    }
+
+    if (weapons[myChoice].strongTo === enemyChoice) {
+        playerScore++;
+        console.log(`You Win! ${myChoice} beats ${enemyChoice}`);
+        roundWinner = "player";
+    }
+    else if (weapons[myChoice].weakTo === enemyChoice) {
+        computerScore++;
+        console.log(`You Lost! ${myChoice} is beaten by ${enemyChoice}`);
+        roundWinner =  'computer';
+    }
+    else {
+        console.log(`It's a Tie! ${myChoice} ties ${enemyChoice}`);
+        roundWinner = 'tie';
+    }
+}
+
+function isGameOver() {
+    if (playerScore === 5 || computerScore === 5) {
+        return true;
+    }
+}
+
+function printWinner() {
+    if (playerScore === 5) {
+        console.log("You Won the game!");
+    }
+    else console.log("You lost the game!");
+}
+
+function game() {
+    while (isGameOver() !== true) {
+        let playerSelection = prompt("What is your choice?");
+        playRound(playerSelection, getComputerChoice());
+        console.log(`Player score: ${playerScore} Computer score: ${computerScore}`);
+    }
+    printWinner();
+}
 
 // initialize starting score
 let playerScore = 0;
 let computerScore = 0;
+let roundWinner = '';
 
-// start a game
 game();
