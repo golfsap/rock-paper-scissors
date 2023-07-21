@@ -90,6 +90,7 @@ function handleClick(playerSelection) {
 
     if (isGameOver() === true) {
         printWinner();
+        resetGame();
     }
 }
 
@@ -143,6 +144,12 @@ function updateSigns(playerSelection, computerSelection) {
             computerSign.innerText = "✌️";
             break;
     }
+}
+
+function resetGame() {
+    const resetBtn = document.createElement("button");
+    resetBtn.innerText = "Reset Game";
+    document.body.append(resetBtn);
 }
 
 // UI

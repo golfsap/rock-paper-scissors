@@ -2,53 +2,60 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    background-color: thistle;
+    background-color: whitesmoke;
+    font-family: 'Roboto', sans-serif;
 }
 
 h1 {
-    border: 1px black solid;
     margin: 0;
     padding: 24px 0;
     text-align: center;
-    color: black;
+    color: white;
+    font-family: 'VT323', monospace;
+    font-size: 48px;
+    background-color: #3882F6;
 }
 
 .main {
     display: flex;
     flex-direction: column;
-    border: 1px red solid;
-    padding: 24px 0;
+    /*border: 1px red solid;*/
+    padding: 16px 0;
 }
+
 h2 {
     margin: 0;
     text-align: center;
-    border: 1px black solid;
+    /*border: 1px black solid; */
+    margin-bottom: 8px;
 }
 
 h3 {
     color: black;
     margin: 0;
-    border: 1px black solid;
+    /*border: 1px black solid;*/
     text-align: center;
 }
 
 .scoreboard {
     display: flex;
     justify-content: center;
+    padding-bottom: 16px;
 }
 
 .player-side, .computer-side {
-    border: 1px mistyrose solid;
+    border: 1px #3882F6 solid; 
     box-sizing: border-box;
     height: 168px;
     width: 168px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
 }
 
 .score {
-    border: solid 1px black;
+    /*border: solid 1px black;*/
     font-size: 20px;
 }
 
