@@ -4,30 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock, Paper, Scissors!</title>
-    <script src="game.js" defer></script>
+    <title>Rock, paper, scissors game</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="game.js" defer></script>
 </head>
 <body>
-    <h1>Let's play Rock, Paper, Scissors!</h1>
-    <h3>First to 5 wins!</h3>
-    <div class="choices">
-        <button class="rock">Rock</button>
-        <button class="paper">Paper</button>
-        <button class="scissors">Scissors</button>
+    <header>
+        <h1>Rock Paper Scissors</h1>
+    </header>
+    <div class="main">
+        <h2 id="scoreInfo">Choose your weapon</h2>
+        <h3 id="scoreMsg">First to 5 wins the game</h3>
     </div>
-    <div class="text">
-        <div class="results">
-            <p id="choices"></p>
-        </div>
-        <div class="scores">
-            <div class="player-score">
-                <p>Your score:</p>
+    <div class="scoreboard">
+        <div class="player-side">
+            <div class="emoji" id="player-sign">
+                ?
             </div>
-            <div class="computer-score">
-                <p>Computer score:</p>
-            </div>   
+            <div class="score" id="player-score">
+                Player: 
+            </div>
         </div>
+        <div class="computer-side">
+            <div class="emoji" id="computer-sign">
+                ?
+            </div>
+            <div class="score" id="computer-score">
+                Computer: 
+            </div>
+        </div>
+    </div>
+    <div class="choices">
+        <button class="emoji" id="Rock">✊</button>
+        <button class="emoji" id="Paper">🖐️</button>
+        <button class="emoji" id="Scissors">✌️</button>
     </div>
 </body>
 </html>
