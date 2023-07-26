@@ -76,6 +76,15 @@ const scoreInfo = document.getElementById("scoreInfo");
 const scoreMsg = document.getElementById("scoreMsg");
 const playerSign = document.getElementById("player-sign");
 const computerSign = document.getElementById("computer-sign");
+const rockBtn = document.getElementById("rockBtn");
+const paperBtn = document.getElementById("paperBtn");
+const scissorsBtn = document.getElementById("scissorsBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+rockBtn.addEventListener('click', () => handleClick("Rock"));
+paperBtn.addEventListener('click', () => handleClick("Paper"));
+scissorsBtn.addEventListener('click', () => handleClick("Scissors"));
+resetBtn.addEventListener('click', resetGame);
 
 
 function handleClick(playerSelection) {
@@ -90,7 +99,7 @@ function handleClick(playerSelection) {
 
     if (isGameOver() === true) {
         printWinner();
-        resetGame();
+        endGame();
     }
 }
 
@@ -146,13 +155,25 @@ function updateSigns(playerSelection, computerSelection) {
     }
 }
 
+function endGame() {
+    resetBtn.classList.remove("hidden");
+}
+
 function resetGame() {
-    const resetBtn = document.createElement("button");
-    resetBtn.innerText = "Reset Game";
-    document.body.append(resetBtn);
+    playerScore = 0;
+    computerScore = 0;
+    roundWinner = '';
+    scoreInfo.innerHTML = "Choose your weapon";
+    scoreMsg.innerText = "First to 5 wins the game";
+    playerSign.innerText = '?';
+    computerSign.innerText = '?';
+    playerScoreUI.innerText = "Player: 0";
+    computerScoreUI.innerText ="Computer: 0";
 }
 
 // UI
+
+/*
 const weapons = document.querySelectorAll('button');
 weapons.forEach(weapon => {
     weapon.addEventListener('click', (e) => {
@@ -160,6 +181,7 @@ weapons.forEach(weapon => {
         handleClick(weapon.id);
     })
 });
+*/
 
 /*
 let playerScoreUI = document.querySelector(".player-score");

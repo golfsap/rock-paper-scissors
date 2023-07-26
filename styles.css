@@ -73,6 +73,11 @@ h3 {
     width: 168px;
 }
 
+.btn:hover {
+    background-color: blanchedalmond;
+    color: fuchsia;
+}
+
 .emoji {
     font-size: 75px;
 }
@@ -102,4 +107,17 @@ h3 {
     justify-content: space-between;
     width: 160px;
     border: 1px black solid;
+}
+
+/* Endgame Btn */
+
+.endgame {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+}
+
+.hidden {
+    display: none;
 }
