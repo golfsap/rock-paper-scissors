@@ -1,113 +1,3 @@
-/*
-console.log("Hello there, this is rock paper scissors!");
-
-function computerPlay() {
-    // define array of choices
-    const choices = ["Rock", "Paper", "Scissors"];
-
-    // get random index value
-    const randomIndex = Math.floor(Math.random() * choices.length);
-
-    // get random item
-    const play = choices[randomIndex];
-
-    return play;
-}
-
-function playRound(playerSelection, computerSelection) {
-    // convert playerSelection to all lowercase with first letter capital
-    const playerChoice = playerSelection.charAt(0).toUpperCase() + playerSelection.toLowerCase().slice(1);
-
-    // check if the same
-    if (playerChoice === computerSelection) {
-        console.log("It's a draw!");
-        return "Draw";
-    }
-
-    // if player chooses rock
-    if (playerChoice === "Rock") {
-        if (computerSelection === "Scissors") {
-            console.log("You Win! Rock beats Scissors");
-            return "Win";
-        }
-        else {
-            console.log("You Lose! Paper beats Rock");
-            return "Lose";
-        }
-    }
-
-    // if player chooses scissors
-    if (playerChoice === "Scissors") {
-        if (computerSelection === "Paper") {
-            console.log("You Win! Scissors beats Paper");
-            return "Win";
-        }
-        else {
-            console.log("You Lose! Rock beats Scissors");
-            return "Lose";
-        }
-    }
-    
-    // if player chooses paper
-    if (playerChoice === "Paper") {
-        if (computerSelection === "Rock") {
-            console.log("You Win! Paper beats Rock");
-            return "Win";
-        }
-        else {
-            console.log("You Lose! Scissors beats Paper");
-            return "Lose";
-        }
-    }
-}
-
-function updateScore(winOrLose) {
-    // player score +1 if win, computer score +1 if lose, +1 both if draw
-    if (winOrLose === "Win") {
-        playerScore++;
-    }
-    else if (winOrLose === "Lose") {
-        computerScore++;
-    }
-    else {
-        playerScore++;
-        computerScore++;
-    }
-}
-
-function game() {
-    
-    // play 5 rounds in each game
-    for (let i = 0; i < 5; i++) {
-
-        // ask player for selection each round
-        let playerSelection = prompt("Rock, paper or scissors?");
-
-        // input player selection vs random computer selection
-        const computerSelection = computerPlay();
-        const roundResult = playRound(playerSelection, computerSelection);
-
-        // keep count of score
-        updateScore(roundResult);
-
-        // print current score
-        console.log(`Player score: ${playerScore}, Computer score ${computerScore}`);
-
-    }
-
-    // output winner of the game
-    if (playerScore > computerScore) {
-        console.log("You win the game!");
-    }
-    else if (playerScore < computerScore) {
-        console.log("You lost the game :(");
-    }
-    else {
-        console.log("It's a tie! :O");
-    }
-}
-*/
-
 function getComputerChoice() {
     // set array of choices
     const options = ['Rock', 'Paper', 'Scissors'];
@@ -142,6 +32,9 @@ function playRound(playerSelection, computerSelection) {
         console.log(`It's a Tie! ${myChoice} ties ${enemyChoice}`);
         roundWinner = 'tie';
     }
+
+    updateScoreMsg(roundWinner, playerSelection, computerSelection);
+    updateSigns(playerSelection, computerSelection);
 }
 
 function isGameOver() {
@@ -152,18 +45,15 @@ function isGameOver() {
 
 function printWinner() {
     if (playerScore === 5) {
+        scoreInfo.innerText = "You won the game! :)";
+        modalTitle.innerText = "Congratulations! You won the game! :)";
         console.log("You Won the game!");
     }
-    else console.log("You lost the game!");
-}
-
-function game() {
-    while (isGameOver() !== true) {
-        let playerSelection = prompt("What is your choice?");
-        playRound(playerSelection, getComputerChoice());
-        console.log(`Player score: ${playerScore} Computer score: ${computerScore}`);
+    else {
+        scoreInfo.innerText = "You lost the game! :(";
+        modalTitle.innerText = "Sorry, You lost the game! :("
+        console.log("You lost the game!");
     }
-    printWinner();
 }
 
 // initialize starting score
@@ -171,4 +61,126 @@ let playerScore = 0;
 let computerScore = 0;
 let roundWinner = '';
 
-game();
+// UI elements
+
+const playerScoreUI = document.getElementById("player-score");
+const computerScoreUI = document.getElementById("computer-score");
+const scoreInfo = document.getElementById("scoreInfo");
+const scoreMsg = document.getElementById("scoreMsg");
+const playerSign = document.getElementById("player-sign");
+const computerSign = document.getElementById("computer-sign");
+const rockBtn = document.getElementById("rockBtn");
+const paperBtn = document.getElementById("paperBtn");
+const scissorsBtn = document.getElementById("scissorsBtn");
+const resetBtn = document.getElementById("resetBtn");
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const closeModalBtn = document.querySelector(".btn-close");
+const restartBtn = document.getElementById("btn-restart");
+const modalTitle = document.getElementById("modal-title");
+
+rockBtn.addEventListener('click', () => handleClick("Rock"));
+paperBtn.addEventListener('click', () => handleClick("Paper"));
+scissorsBtn.addEventListener('click', () => handleClick("Scissors"));
+resetBtn.addEventListener('click', resetGame);
+closeModalBtn.addEventListener('click', closeModal);
+restartBtn.addEventListener('click', resetGame);
+//overlay.addEventListener('click', closeModal);
+
+function handleClick(playerSelection) {
+    if (isGameOver() === true) {
+        printWinner();
+        return
+    }
+
+    playRound(playerSelection, getComputerChoice());
+    console.log(`Player score: ${playerScore} Computer score: ${computerScore}`);
+    updateScore();
+
+    if (isGameOver() === true) {
+        printWinner();
+        endGame();
+    }
+}
+
+function updateScore() {
+    playerScoreUI.innerText = `Player: ${playerScore}`;
+    computerScoreUI.innerText = `Computer: ${computerScore}`;
+    if (roundWinner === "player") {
+        scoreInfo.innerText = "You Win!";
+    }
+    else if (roundWinner === "computer") {
+        scoreInfo.innerText = "You Lost!";
+    }
+    else {
+        scoreInfo.innerText = "It's a Tie!";
+    }
+}
+
+function updateScoreMsg(winner, playerSelection, computerSelection) {
+    if (winner === 'player') {
+        scoreMsg.innerText = `${playerSelection} beats ${computerSelection}`;
+    }
+    else if (winner === 'computer') {
+        scoreMsg.innerText = `${playerSelection} is beaten by ${computerSelection}`;
+    }
+    else {
+        scoreMsg.innerText = `${playerSelection} ties ${computerSelection}`;
+    }
+}
+
+function updateSigns(playerSelection, computerSelection) {
+    switch (playerSelection) {
+        case "Rock": 
+            playerSign.innerText = "✊";
+            break;
+        case "Paper":
+            playerSign.innerText = "🖐️";
+            break;
+        case "Scissors":
+            playerSign.innerText = "✌️";
+            break;
+    }
+
+    switch (computerSelection) {
+        case "Rock": 
+            computerSign.innerText = "✊";
+            break;
+        case "Paper":
+            computerSign.innerText = "🖐️";
+            break;
+        case "Scissors":
+            computerSign.innerText = "✌️";
+            break;
+    }
+}
+
+function endGame() {
+    openModal();
+    resetBtn.classList.remove("hidden");
+}
+
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    roundWinner = '';
+    scoreInfo.innerHTML = "Choose your weapon";
+    scoreMsg.innerText = "First to 5 wins the game";
+    playerSign.innerText = '?';
+    computerSign.innerText = '?';
+    playerScoreUI.innerText = "Player: 0";
+    computerScoreUI.innerText ="Computer: 0";
+    closeModal();
+}
+
+function openModal() {
+    modal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+}
+
+function closeModal() {
+    modal.classList.add("hidden");
+    overlay.classList.add("hidden");
+}
+
+

@@ -4,9 +4,67 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock, paper, scissors game</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="game.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,900;1,300;1,700&family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
-    <script src="game.js"></script>
+    <header>
+        <h1>Rock Paper Scissors</h1>
+    </header>
+    <div class="main">
+        <h2 id="scoreInfo">Choose your weapon</h2>
+        <h3 id="scoreMsg">First to 5 wins the game</h3>
+    </div>
+    <div class="scoreboard">
+        <div class="player-side">
+            <div class="emoji" id="player-sign">
+                ?
+            </div>
+            <div class="score" id="player-score">
+                Player: 0
+            </div>
+        </div>
+        <div class="computer-side">
+            <div class="emoji" id="computer-sign">
+                ?
+            </div>
+            <div class="score" id="computer-score">
+                Computer: 0
+            </div>
+        </div>
+    </div>
+    <div class="choices">
+        <button class="btn" id="rockBtn">
+            <div class="emoji">✊</div>
+            <div class="caption">Rock</div>
+        </button>
+        <button class="btn" id="paperBtn">
+            <div class="emoji">🖐️</div>
+            <div class="caption">Paper</div>
+        </button>
+        <button class="btn" id="scissorsBtn">
+            <div class="emoji">✌️</div>
+            <div class="caption">Scissors</div>
+        </button>
+    </div>
+    <div class="endgame">
+        <button class="reset-btn hidden" id="resetBtn">Reset Game</button>
+    </div>
+
+    <section class="modal hidden">
+        <div class="flex">
+            <button class="btn-close">X</button>
+        </div>
+        <div>
+            <h3 id="modal-title">Congratulations! You won the game!</h3>
+            <p id="modal-msg">Shall we play another game? Click the button below to restart the game.</p>   
+        </div>
+        <button class="btn-restart" id="btn-restart">Restart Game</button>
+    </section>
+    <div class="overlay hidden"></div>
 </body>
 </html>
