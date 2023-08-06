@@ -46,10 +46,12 @@ function isGameOver() {
 function printWinner() {
     if (playerScore === 5) {
         scoreInfo.innerText = "You won the game! :)";
+        modalTitle.innerText = "Congratulations! You won the game! :)";
         console.log("You Won the game!");
     }
     else {
         scoreInfo.innerText = "You lost the game! :(";
+        modalTitle.innerText = "Sorry, You lost the game! :("
         console.log("You lost the game!");
     }
 }
@@ -80,12 +82,19 @@ const rockBtn = document.getElementById("rockBtn");
 const paperBtn = document.getElementById("paperBtn");
 const scissorsBtn = document.getElementById("scissorsBtn");
 const resetBtn = document.getElementById("resetBtn");
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const closeModalBtn = document.querySelector(".btn-close");
+const restartBtn = document.getElementById("btn-restart");
+const modalTitle = document.getElementById("modal-title");
 
 rockBtn.addEventListener('click', () => handleClick("Rock"));
 paperBtn.addEventListener('click', () => handleClick("Paper"));
 scissorsBtn.addEventListener('click', () => handleClick("Scissors"));
 resetBtn.addEventListener('click', resetGame);
-
+closeModalBtn.addEventListener('click', closeModal);
+restartBtn.addEventListener('click', resetGame);
+//overlay.addEventListener('click', closeModal);
 
 function handleClick(playerSelection) {
     if (isGameOver() === true) {
@@ -156,6 +165,7 @@ function updateSigns(playerSelection, computerSelection) {
 }
 
 function endGame() {
+    openModal();
     resetBtn.classList.remove("hidden");
 }
 
@@ -169,7 +179,19 @@ function resetGame() {
     computerSign.innerText = '?';
     playerScoreUI.innerText = "Player: 0";
     computerScoreUI.innerText ="Computer: 0";
+    closeModal();
 }
+
+function openModal() {
+    modal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+}
+
+function closeModal() {
+    modal.classList.add("hidden");
+    overlay.classList.add("hidden");
+}
+
 
 // UI
 

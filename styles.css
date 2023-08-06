@@ -111,7 +111,7 @@ h3 {
     border: 1px black solid;
 }
 
-/* Endgame Btn */
+/* Reset game Btn */
 
 .endgame {
     border: 1px solid black;
@@ -186,8 +186,7 @@ h3 {
     z-index: 1;
 }
 
-/*
+
 .hidden {
     display: none;
 }
-*/
