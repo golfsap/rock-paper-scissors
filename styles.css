@@ -46,7 +46,7 @@ h3 {
 }
 
 .player-side, .computer-side {
-    border: 1px #3882F6 solid; 
+    /*border: 1px #3882F6 solid; */
     box-sizing: border-box;
     height: 168px;
     width: 168px;
@@ -114,10 +114,10 @@ h3 {
 /* Reset game Btn */
 
 .endgame {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     display: flex;
     justify-content: center;
-    padding: 16px;
+    padding: 32px;
 }
 
 /* Modal and Overlay */
